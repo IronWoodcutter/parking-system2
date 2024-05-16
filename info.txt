@@ -1,0 +1,26 @@
+http://127.0.0.1:8000/docs.
+
+uvicorn main:app --host localhost --port 8000 --reload
+poetry add python-jose[cryptography]
+
+docker-compose up – запуск служб, визначених у файлі docker-compose.yml. Ця команда створить і запустить контейнери для кожного сервісу, а також створить мережу для взаємодії контейнерів.
+
+    docker-compose build – перебудувати образи, визначені у файлі docker-compose.yml. Це може бути корисно, якщо ви внесли зміни до своїх сервісів і хочете переконатися, що образи актуальні.
+
+poetry export --without-hashes --format=requirements.txt > requirements.txt
+
+alembic init migrations
+alembic revision --autogenerate -m 'Init'
+alembic upgrade head
+
+
+Send message to Telegram:
+    import src.services.tg_bot as tg
+    result = tg.send_message(164802149, 'TEST_message')
+    Ответ: {'ok': True, 'result': {'message_id': 362, 'from': {'id': 6694067814, 'is_bot': True, 'first_name': 'Parking_bot', 'username': 'Parking_Project_bot'}, 'chat': {'id': 164802149, 'first_name': 'Артем', 'last_name': 'Ф 💠', 'username': 'FitisovArtem', 'type': 'private'}, 'date': 1715605628, 'text': 'TEST_message'}}
+
+Take photo by camera
+    import asyncio
+    from src.services.get_photo import main
+    # Вызываем функцию main из camera.py и получаем filename
+    filename = asyncio.run(main())
